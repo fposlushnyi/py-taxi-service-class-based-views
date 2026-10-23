@@ -4,17 +4,25 @@
   <h1>Model: {{ car.model }}</h1>
   <p><strong>Manufacturer: {{ car.manufacturer.name }}, {{ car.manufacturer.country }}</strong></p>
   <div class="ml-3">
-    <h3>Drivers:</h3>
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>License</th>
+      </tr>
     {% for driver in car.drivers.all %}
-      <hr>
-      <p class="text-muted">{{ driver.id }}</p>
-      <p>{{ driver.first_name }} {{ driver.last_name }}
-        {% if driver.license_number %}
-          {{ driver.license_number }}
-        {% endif %}
-      </p>
+      <tr>
+        <td>{{ driver.id }}</td>
+        <td>{{ driver.first_name }}</td>
+        <td>{{ driver.last_name }}</td>
+        <td>{{ driver.license_number }}</td>
+      </tr>
     {% empty %}
-      <p>No drivers!</p>
+      <tr>
+        <td>No drivers!</td>
+      </tr>
     {% endfor %}
+    </table>
   </div>
 {% endblock %}
